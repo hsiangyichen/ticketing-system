@@ -4,7 +4,7 @@ import { connectRedis, subscriber } from "./services/redisClient.js";
 const app = express();
 const PORT = 8081;
 
-// Connect to Redis at app startup
+// Connect to Redis
 connectRedis().catch(console.error);
 
 // Subscribe to a channel
@@ -17,7 +17,6 @@ subscriber.subscribe("Movie Catalog Service", (message) => {
 
 console.log("Subscriber service is waiting for messages...");
 
-// Test homepage
 app.get("/", (req, res) => {
   res.send("Welcome to the Ticketing Service!");
 });
