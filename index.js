@@ -1,16 +1,10 @@
 import express from "express";
-import { createClient } from "redis";
+import { connectRedis, subscriber } from "./services/redisClient.js";
 
 const app = express();
 const PORT = 8081;
 
-// Create Redis client
-const subscriber = createClient();
-
-// Connect to Redis
-async function connectRedis() {
-  await subscriber.connect();
-}
+// Connect to Redis at app startup
 connectRedis().catch(console.error);
 
 // Subscribe to a channel
